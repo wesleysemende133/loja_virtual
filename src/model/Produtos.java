@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public class Produtos {
     private String nomeProduto;
     private String descricaoProduto;
-    private BigDecimal precoProduto;
+    private double precoProduto;
     private int quantidadeProduto;
 
     /// Getters
@@ -17,7 +17,7 @@ public class Produtos {
         return descricaoProduto;
     }
 
-    public BigDecimal getPrecoProduto(){
+    public double getPrecoProduto(){
         return precoProduto;
     }
 
@@ -34,7 +34,7 @@ public class Produtos {
         this.descricaoProduto = descricaoProduto;
     }
 
-    public void setPrecoProduto(BigDecimal precoProduto) {
+    public void setPrecoProduto(double precoProduto) {
         this.precoProduto = precoProduto;
     }
 
