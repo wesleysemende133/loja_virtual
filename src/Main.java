@@ -41,5 +41,7 @@ public class Main {
 
         /// persistencia dos dados
         produtosDAO.adicionar(produto); */
+
+        produtosDAO.consultar();
     }
 }

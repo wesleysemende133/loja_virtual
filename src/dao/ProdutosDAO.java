@@ -3,9 +3,7 @@ package dao;
 import db.Conexao;
 import model.Produtos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ProdutosDAO {
     private Connection connection;
@@ -17,6 +15,7 @@ public class ProdutosDAO {
     public void adicionar(Produtos produtos){
         String sql = "insert into produtos" + "(nomeProduto,descricaoProduto, precoProduto, quantidadeProduto)" + "values(?,?,?,?)";
 
+        /// Persitencia de dados
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, produtos.getNomeProduto());
@@ -26,6 +25,25 @@ public class ProdutosDAO {
 
             stmt.execute();
             stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public  void consultar(){
+        String sql = "SELECT * FROM produtos";
+        try{
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()){
+                System.out.println("ID: " + rs.getInt("id"));
+                System.out.println("Nome do Produto: " + rs.getString("nomeProduto"));
+                System.out.println("Descricao do produto: " + rs.getString("descricaoProduto"));
+                System.out.println("Preco: " + rs.getDouble("precoProduto"));
+                System.out.println("Quantidade: " + rs.getInt("quantidadeProduto"));
+                System.out.println("___________________________________________");
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
