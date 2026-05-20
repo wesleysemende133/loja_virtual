@@ -28,9 +28,9 @@ public class UsuarioDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             /// statments para persistir os dados no banco de dados
-            stmt.setString(1, usuarios.getNomeUsuario());
-            stmt.setString(2, usuarios.getEmail());
-            stmt.setString(3,usuarios.getPassword());
+            stmt.setString(1, usuarios.nome());
+            stmt.setString(2, usuarios.email());
+            stmt.setString(3, usuarios.password());
 
             stmt.execute();
             stmt.close();

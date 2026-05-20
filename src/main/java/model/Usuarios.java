@@ -1,33 +1,40 @@
 package model;
 
+import atributos.Email;
+import atributos.Nome;
+
 public class Usuarios {
-    private String nomeUsuario;
-    private String email;
+    private Nome nomeUsuario;
+    private Email email;
     private String password;
 
-    /// Getters
-    public String getNomeUsuario(){
-        return nomeUsuario;
+    public Usuarios(Nome nomeUsuario, Email email, String password) {
+        this.nomeUsuario = nomeUsuario;
+        this.email = email;
+        if (password == null || password.length() < 6) {
+            throw new IllegalArgumentException("Password deve ter pelo menos 6 caracteres: " + password);
+        }
+        this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    // Object Calisthenics: expose intent and domain behavior rather than generic getters/setters
+    public String nome() {
+        return nomeUsuario.toString();
     }
 
-    public String getPassword(){
+    public String email() {
+        return email.toString();
+    }
+
+    public String password() {
         return password;
     }
 
-    /// Setters
-    public void setNomeUsuario(String nomeUsuario){
-        this.nomeUsuario = nomeUsuario;
-    }
-
-    public void setEmail(String email){
+    public void atualizarEmail(Email email) {
         this.email = email;
     }
 
-    public void setPassword(String password){
-        this.password =password;
+    public boolean autenticar(String password) {
+        return this.password.equals(password);
     }
 }

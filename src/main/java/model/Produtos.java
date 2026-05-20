@@ -1,55 +1,61 @@
 package model;
 
+import atributos.Descricao;
+import atributos.Nome;
+import atributos.Preco;
+
 public class Produtos {
-    private String nomeProduto;
-    private String descricaoProduto;
-    private double precoProduto;
+    private Nome nomeProduto;
+    private Descricao descricaoProduto;
+    private Preco precoProduto;
     private int quantidadeProduto;
 
-    /// Getters
-    public String getNomeProduto(){
-        return nomeProduto;
-    }
-
-    public String getDescricaoProduto(){
-        return descricaoProduto;
-    }
-
-    public double getPrecoProduto(){
-        return precoProduto;
-    }
-
-    public int getQuantidadeProduto(){
-        return quantidadeProduto;
-    }
-
-    /// Setters
-    public void setNomeProduto(String nomeProduto) {
-        if(nomeProduto == null || nomeProduto.trim().isEmpty()){
-            throw new IllegalArgumentException("O nome do produto não pode ser vazio.");
-        }
-
+    public Produtos(Nome nomeProduto, Descricao descricaoProduto, Preco precoProduto, int quantidadeProduto) {
         this.nomeProduto = nomeProduto;
-    }
-
-    public void setDescricaoProduto(String descricaoProduto) {
-        if(descricaoProduto == null || descricaoProduto.trim().isEmpty()){
-            throw new IllegalArgumentException("A descrição do produto não pode ser vazio.");
-        }
         this.descricaoProduto = descricaoProduto;
-    }
-
-    public void setPrecoProduto(double precoProduto) {
-        if(precoProduto < 0){
-            throw new IllegalArgumentException("O preço do produto não pode ser negativo.");
-        }
         this.precoProduto = precoProduto;
-    }
 
-    public void setQuantidadeProduto(int quantidadeProduto) {
-        if(quantidadeProduto<0){
+        if (quantidadeProduto < 0) {
             throw new IllegalArgumentException("A quantidade do produto nao pode ser menor que 0.");
         }
         this.quantidadeProduto = quantidadeProduto;
+    }
+
+    // Object Calisthenics: expose intent instead of generic getters/setters
+    public String nome() {
+        return nomeProduto.toString();
+    }
+
+    public String descricao() {
+        return descricaoProduto.toString();
+    }
+
+    public double preco() {
+        return precoProduto.valor();
+    }
+
+    public int quantidade() {
+        return quantidadeProduto;
+    }
+
+    public void ajustarPreco(Preco novoPreco) {
+        this.precoProduto = novoPreco;
+    }
+
+    public void aumentarQuantidade(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade a adicionar nao pode ser negativa.");
+        }
+        this.quantidadeProduto += quantidade;
+    }
+
+    public void reduzirQuantidade(int quantidade) {
+        if (quantidade < 0) {
+            throw new IllegalArgumentException("Quantidade a remover nao pode ser negativa.");
+        }
+        if (quantidade > this.quantidadeProduto) {
+            throw new IllegalArgumentException("Não há estoque suficiente para remover: " + quantidade);
+        }
+        this.quantidadeProduto -= quantidade;
     }
 }

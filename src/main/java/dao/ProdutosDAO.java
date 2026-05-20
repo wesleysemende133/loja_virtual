@@ -16,20 +16,20 @@ public class ProdutosDAO {
         this.connection = Conexao.conectar();
     }
 
+    @SuppressWarnings("RedundantStringToString")
     public void adicionar(Produtos produtos){
-        String sql = "insert into produtos(\"nomeProduto\",\"descricaoProduto\", \"precoProduto\", \"quantidadeProduto\") values(?,?,?,?)";
+        String sql = "insert into produtos(\"nome_produto\",\"descricao_produto\", \"preco_produto\", \"quantidade_produto\") values(?,?,?,?)";
 
         /// Persitencia de dados
-        try{
+        try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, produtos.getNomeProduto());
-            stmt.setString(2,produtos.getDescricaoProduto());
-            stmt.setDouble(3,produtos.getPrecoProduto());
-            stmt.setInt(4,produtos.getQuantidadeProduto());
+            stmt.setString(1, produtos.nome());
+            stmt.setString(2, produtos.descricao());
+            stmt.setDouble(3, produtos.preco());
+            stmt.setInt(4, produtos.quantidade());
 
             stmt.execute();
             stmt.close();
-            connection.commit(); // Confirmar a transação!
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -42,10 +42,10 @@ public class ProdutosDAO {
 
             while (rs.next()){
                 System.out.println("ID: " + rs.getInt("id"));
-                System.out.println("Nome do Produto: " + rs.getString("nomeProduto"));
-                System.out.println("Descricao do produto: " + rs.getString("descricaoProduto"));
-                System.out.println("Preco: " + rs.getDouble("precoProduto"));
-                System.out.println("Quantidade: " + rs.getInt("quantidadeProduto"));
+                System.out.println("Nome do Produto: " + rs.getString("nome_produto"));
+                System.out.println("Descricao do produto: " + rs.getString("descricao_produto"));
+                System.out.println("Preco: " + rs.getDouble("preco_produto"));
+                System.out.println("Quantidade: " + rs.getInt("quantidade_produto"));
                 System.out.println("___________________________________________");
             }
 
