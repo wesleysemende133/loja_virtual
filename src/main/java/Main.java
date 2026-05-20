@@ -11,8 +11,8 @@ import model.Usuarios;
 public class Main {
     public static void main(String[] args) {
         Usuarios usuario = new Usuarios(
-            new Nome("Ana"),
-            new Email("ana@exemplo.com"),
+            new Nome("Alberto"),
+            new Email("Alberto@gmail.com"),
             "senha123"
         );
 

@@ -1,4 +1,8 @@
 /home/wesley/Secretária/projectos/loja_virtual/src/main/java/Main.java
+/home/wesley/Secretária/projectos/loja_virtual/src/main/java/atributos/Descricao.java
+/home/wesley/Secretária/projectos/loja_virtual/src/main/java/atributos/Email.java
+/home/wesley/Secretária/projectos/loja_virtual/src/main/java/atributos/Nome.java
+/home/wesley/Secretária/projectos/loja_virtual/src/main/java/atributos/Preco.java
 /home/wesley/Secretária/projectos/loja_virtual/src/main/java/dao/ProdutosDAO.java
 /home/wesley/Secretária/projectos/loja_virtual/src/main/java/dao/UsuarioDAO.java
 /home/wesley/Secretária/projectos/loja_virtual/src/main/java/db/Conexao.java
